@@ -5,7 +5,11 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.time.LocalDate;
+import java.time.LocalTime;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
+import java.util.Date;
 
 import javax.naming.Context;
 import javax.naming.InitialContext;
@@ -53,6 +57,7 @@ public class TicketDAO {
 			re = pstmt.executeUpdate();
 		} catch (Exception e) {
 			System.out.println("예외발생:"+e.getMessage());
+			
 		} finally {
 			if(pstmt != null) {try {pstmt.close();} catch (SQLException e) {e.printStackTrace();}}
 			if(conn != null) {try {conn.close();} catch (SQLException e) {e.printStackTrace();}}
@@ -206,5 +211,36 @@ public class TicketDAO {
 			if(conn != null) {try {conn.close();} catch (SQLException e) {e.printStackTrace();}}
 		}
 		return t;
+	}
+	
+	//현재 날짜 리턴하는 메소드
+	public String todayDate() {
+		 // 현재 날짜 구하기
+        LocalDate now = LocalDate.now();
+ 
+        // 포맷 정의
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy/MM/dd");
+ 
+        // 포맷 적용
+        String formatedNow = now.format(formatter);
+        
+		return formatedNow;
+	}
+	
+	//현재 시간 리턴하는 메소드
+	public String nowTime() {
+		// 현재 시간
+        LocalTime now = LocalTime.now();
+ 
+        // 현재시간 출력
+        System.out.println(now);  // 06:20:57.008731300
+ 
+        // 포맷 정의하기
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("HH시 mm분 ss초");
+ 
+        // 포맷 적용하기
+        String formatedNow = now.format(formatter);
+        
+		return formatedNow;
 	}
 }
