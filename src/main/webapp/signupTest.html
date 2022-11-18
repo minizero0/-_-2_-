@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<link rel="stylesheet" type="text/css" href="signupTest.css">
+</head>
+<body>
+	<div id="background">
+		<a class="main" href="mainTest.jsp">
+		<img  src="./image/homeicon.png" width="40" height="40"></a>
+	</div>
+	<form action="" method="post">
+		<div>
+		<h2>SignUp</h2>
+		</div>
+		<table>
+			<tr>
+				<td>아이디</td>
+				<td><input type="text" name="custid" class="box"><button>중복확인</button></td>
+			</tr>
+			<tr>
+				<td colspan="2" class="info">* 6자~12자의 영문,숫자로만 입력</td>
+			</tr>		
+			<tr>
+				<td>비밀번호</td>
+				<td><input type="password" name="pwd" class="box"></td>
+			</tr>
+			<tr>
+				<td colspan="2" class="info">* 최소 6자 이상 영문, 숫자로만 입력</td>
+			</tr>
+			<tr>
+				<td>비밀번호 확인</td>
+				<td><input type="password" class="box"></td>
+			</tr>
+			<tr>
+				<td>이름</td>
+				<td><input type="text" name="name" class="box" size="10"></td>
+			</tr>
+			<tr>
+				<td>이메일주소</td>
+				<td>
+					<input type="text" name="email" size="10" class="box">&nbsp;@&nbsp;
+					<select name="email" class="cbox">
+						<option value="@gmail.com">gmail.com</option>
+						<option value="@naver.com">naver.com</option>
+						<option value="@hanmail.net">hanmail.net</option>
+						<option value="@kakao.com">kakao.com</option>
+					</select>
+				</td>
+			</tr>
+			<tr>
+				<td>생년월일</td>
+				<td><input type="text" name="birth" class="box"></td>
+			</tr>
+			<tr>
+		        <td>전화번호</td>
+		        <td>
+		        	<input type="text" name="phone" maxlength="3" size="4" class="box"> -
+            		<input type="text" name="phone" maxlength="4" size="4" class="box"> -
+            		<input type="text" name="phone" maxlength="4" size="4" class="box">
+            		<button>중복확인</button>
+       		   </td>
+      	   </tr>
+      	   <tr>
+      	   		<td>성별</td>
+      	   		<td class="td1">
+					남성<input type="radio" id="male" name="gender" value="male">&nbsp;&nbsp;&nbsp;&nbsp;
+					여성<input type="radio" name="gender" value="female">
+				</td>			
+      	   </tr>
+      	   <tr>
+      	   		<td>관심사</td>
+      	   		<td class="td1">
+      	   			시사회<input type="radio" name="favor" value="preview">
+      	   			연극<input type="radio" name="favor" value="play">
+					뮤지컬<input type="radio" name="favor" value="musical">
+					콘서트<input type="radio" name="favor" value="concert">
+      	   		</td>
+      	   </tr>
+		</table>
+		<div class="caption">
+			<button id="btn_cancel">취소</button>&nbsp;&nbsp;
+			<button id="btn_join">가입하기</button>
+		</div>
+	</form>
+</body>
+</html>
