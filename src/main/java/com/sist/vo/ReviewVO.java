@@ -7,6 +7,6 @@ public class ReviewVO {
 	private int reviewid;
 	private String custid;
 	private int ticketid;
-	private int score;
+	private double score;
 	private String review_content;
 }

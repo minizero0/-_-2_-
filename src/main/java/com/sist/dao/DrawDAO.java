@@ -28,7 +28,7 @@ public class DrawDAO {
 	//드로우 추가
 	public int insertDraw(DrawVO d) {
 		int re = -1;
-		String sql = "";
+		String sql = "insert into draw(drawid,custid,ticketid,seatid) values(?,?,seq_ticket.nextval,seq_seat.nextval)";
 		Connection conn = null;
 		PreparedStatement pstmt = null;
 		try {
@@ -36,7 +36,8 @@ public class DrawDAO {
 			DataSource ds = (DataSource)context.lookup("java:/comp/env/mydb");
 			conn = ds.getConnection();
 			pstmt = conn.prepareStatement(sql);
-			
+			pstmt.setInt(1, d.getDrawid());
+			pstmt.setString(2, d.getCustid());
 			re = pstmt.executeUpdate();
 		} catch (Exception e) {
 			System.out.println("예외발생:"+e.getMessage());
@@ -51,7 +52,7 @@ public class DrawDAO {
 	//드로우 내역 수정
 	public int updateDraw(DrawVO d) {
 		int re = -1;
-		String sql = "";
+		String sql = "update draw set custid=?,ticketid=?,seatid=? where drawid=?";
 		Connection conn = null;
 		PreparedStatement pstmt = null;
 		try {
@@ -59,7 +60,10 @@ public class DrawDAO {
 			DataSource ds = (DataSource)context.lookup("java:/comp/env/mydb");
 			conn = ds.getConnection();
 			pstmt = conn.prepareStatement(sql);
-			
+			pstmt.setString(1, d.getCustid());
+			pstmt.setInt(2, d.getTicketid());
+			pstmt.setInt(3, d.getSeatid());
+			pstmt.setInt(4, d.getDrawid());
 			re = pstmt.executeUpdate();
 		} catch (Exception e) {
 			System.out.println("예외발생:"+e.getMessage());
