@@ -28,7 +28,7 @@ public class CustomerDAO {
 	//회원 가입
 	public int insertCustomer(CustomerVO c) {
 		int re = -1;
-		String sql = "insert into customer(custid,pwd,name,birth,email,phone,gender,cateid) values(?,?,?,?,?,?,?,seq_category.nextval)";
+		String sql = "insert into customer(custid,pwd,name,birth,email,phone,gender,cateid) values(?,?,?,?,?,?,?,?)";
 		Connection conn = null;
 		PreparedStatement pstmt = null;
 		try {
@@ -36,6 +36,7 @@ public class CustomerDAO {
 			DataSource ds = (DataSource)context.lookup("java:/comp/env/mydb");
 			conn = ds.getConnection();
 			pstmt = conn.prepareStatement(sql);
+			
 			pstmt.setString(1, c.getCustid());
 			pstmt.setString(2, c.getPwd());
 			pstmt.setString(3, c.getName());
@@ -43,6 +44,8 @@ public class CustomerDAO {
 			pstmt.setString(5, c.getEmail());
 			pstmt.setString(6, c.getPhone());
 			pstmt.setString(7, c.getGender());
+			pstmt.setInt(8, c.getCateid());
+			
 			re = pstmt.executeUpdate();
 		} catch (Exception e) {
 			System.out.println("예외발생:"+e.getMessage());
