@@ -28,7 +28,7 @@ public class TicketDAO {
 	//티켓 추가
 	public int insertTicket(TicketVO t) {
 		int re = -1;
-		String sql = "";
+		String sql = "insert into ticket values(seq_ticket.val,?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
 		Connection conn = null;
 		PreparedStatement pstmt = null;
 		try {
@@ -36,10 +36,25 @@ public class TicketDAO {
 			DataSource ds = (DataSource)context.lookup("java:/comp/env/mydb");
 			conn = ds.getConnection();
 			pstmt = conn.prepareStatement(sql);
+			pstmt.setInt(1, t.getCateid());
+			pstmt.setString(2, t.getPlaceid());
+			pstmt.setString(3, t.getTicket_name());
+			pstmt.setInt(4, t.getPrice());
+			pstmt.setString(5, t.getTicket_date());
+			pstmt.setInt(6, t.getMin_age());
+			pstmt.setInt(7, t.getRuntime());
+			pstmt.setString(8, t.getCast());
+			pstmt.setString(9, t.getContent());
+			pstmt.setString(10, t.getImg_fname());
+			pstmt.setString(11, t.getVid_url());
+			pstmt.setString(12, t.getLoc());
+			pstmt.setString(13, t.getLat());
+			pstmt.setString(14, t.getLng());
 			
 			re = pstmt.executeUpdate();
 		} catch (Exception e) {
 			System.out.println("예외발생:"+e.getMessage());
+			
 		} finally {
 			if(pstmt != null) {try {pstmt.close();} catch (SQLException e) {e.printStackTrace();}}
 			if(conn != null) {try {conn.close();} catch (SQLException e) {e.printStackTrace();}}
@@ -51,7 +66,8 @@ public class TicketDAO {
 	//티켓 정보 수정
 	public int updateTicket(TicketVO t) {
 		int re = -1;
-		String sql = "";
+		String sql = "update ticket set cateid = ?, placeid = ?, ticket_name = ?, price = ?, ticket_date = ?, min_age = ?, "
+				+ "runtime = ?, cast = ?, content = ?, img_fname = ?, vid_url = ?, loc = ?, lat = ?, lng = ? where ticketid = ?";
 		Connection conn = null;
 		PreparedStatement pstmt = null;
 		try {
@@ -60,6 +76,22 @@ public class TicketDAO {
 			conn = ds.getConnection();
 			pstmt = conn.prepareStatement(sql);
 			
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setInt(1, t.getCateid());
+			pstmt.setString(2, t.getPlaceid());
+			pstmt.setString(3, t.getTicket_name());
+			pstmt.setInt(4, t.getPrice());
+			pstmt.setString(5, t.getTicket_date());
+			pstmt.setInt(6, t.getMin_age());
+			pstmt.setInt(7, t.getRuntime());
+			pstmt.setString(8, t.getCast());
+			pstmt.setString(9, t.getContent());
+			pstmt.setString(10, t.getImg_fname());
+			pstmt.setString(11, t.getVid_url());
+			pstmt.setString(12, t.getLoc());
+			pstmt.setString(13, t.getLat());
+			pstmt.setString(14, t.getLng());
+			pstmt.setInt(15, t.getTicketid());
 			re = pstmt.executeUpdate();
 		} catch (Exception e) {
 			System.out.println("예외발생:"+e.getMessage());
