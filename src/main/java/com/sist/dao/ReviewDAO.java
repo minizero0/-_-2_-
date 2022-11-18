@@ -28,7 +28,7 @@ public class ReviewDAO {
 	//후기 추가
 	public int insertReview(ReviewVO r) {
 		int re = -1;
-		String sql = "insert into review(reviewid,custid,ticketid,score,review_content) values(?,?,seq_ticket.nextval,?,?)";
+		String sql = "insert into review(reviewid,custid,ticketid,score,review_content) values(?,?,?,?,?)";
 		Connection conn = null;
 		PreparedStatement pstmt = null;
 		try {
@@ -36,11 +36,15 @@ public class ReviewDAO {
 			DataSource ds = (DataSource)context.lookup("java:/comp/env/mydb");
 			conn = ds.getConnection();
 			pstmt = conn.prepareStatement(sql);
+			
 			pstmt.setInt(1, r.getReviewid());
 			pstmt.setString(2, r.getCustid());
-			pstmt.setDouble(3, r.getScore());
-			pstmt.setString(4, r.getReview_content());
+			pstmt.setInt(3, r.getTicketid());
+			pstmt.setDouble(4, r.getScore());
+			pstmt.setString(5, r.getReview_content());
+			System.out.println(r.getReview_content() +"\n"+re);
 			re = pstmt.executeUpdate();
+			System.out.println(r.getReview_content() +"\n"+re);
 		} catch (Exception e) {
 			System.out.println("예외발생:"+e.getMessage());
 		} finally {
