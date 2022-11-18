@@ -1,11 +1,13 @@
-1. 2차 프로젝트 계정 생성 및 권한 부여
+<< 1. 2차 프로젝트 계정 생성 및 권한 부여 >>
   - create user c##project2 identified by project2;
   - grant connect, resource, dba to c##project2;
   ==>사용자명: c##project2 / 비밀번호: project2
 
 
+<< 2. 테이블 생성 >>
+  * 시퀀스 생성 ==> Category, Ticket, Seat 테이블
+  * 메소드로 번호 부여 ==> Book, Draw, Review 테이블
 
-2. 테이블 생성
   ① Category 테이블
 create table category(
 	cateid number primary key,
@@ -20,8 +22,8 @@ create table customer(
 	custid varchar2(20) primary key,
 	pwd varchar2(20) not null,
 	name varchar2(20) not null,
-	birth date not null,
-	email varchar2(20) not null,
+	birth varchar2(20) not null,
+	email varchar2(30) not null,
 	phone varchar2(20) not null unique,
 	gender varchar2(20) not null,
 	cateid number references category(cateid)
@@ -40,18 +42,18 @@ create table ticket(
 	ticketid number primary key,
 	cateid number references category(cateid),
 	placeid varchar2(10) references place(placeid),
-	ticket_name varchar2(20) not null,
+	ticket_name varchar2(50) not null,
 	price number not null,
-	ticket_date date not null,
+	ticket_date varchar2(20) not null,
 	min_age number not null,
 	runtime number not null,
-	cast varchar2(20),
-	content varchar2(300) not null,
-	img_fname varchar2(300) not null,
+	cast varchar2(200),
+	content varchar2(1000) not null,
+	img_fname varchar2(100) not null,
 	vid_url varchar2(300) null,
 	loc varchar2(100) not null,
-	lat varchar2(100) not null,
-	lng varchar2(100) not null	
+	lat number not null,
+	lng number not null	
 );
 
 create sequence seq_ticket;
@@ -77,8 +79,6 @@ create table book(
 	seatid number references seat(seatid)
 );
 
-create sequence seq_book;
-
 
   ⑦ Draw 테이블
 create table draw(
@@ -88,8 +88,6 @@ create table draw(
 	seatid number references seat(seatid)
 );
 
-create sequence seq_draw;
-
 
   ⑧ Review 테이블
 create table review(
@@ -97,7 +95,73 @@ create table review(
 	custid varchar2(20) references customer(custid),
 	ticketid number references ticket(ticketid),
 	score number not null,
-	review_content varchar2(300) not null
+	review_content varchar2(500) not null
 );
 
-create sequence seq_review;
+
+<< 3. ed format 지정 >>
+column cateid format 99;
+column catename format a10;
+
+column custid format a15;
+column pwd format a15;
+column name format a10;
+column birth format a15;
+column email format a20;
+column phone format a15;
+column gender format a10;
+
+column placeid format a10;
+column seatnum format 999;
+
+column ticketid format 999;
+column ticket_name format a20;
+column price format 999,999;
+column ticket_date format a15;
+column min_age format 999;
+column runtime format 999;
+column cast format a20;
+column content format a30;
+column img_fname format a15;
+column vid_url format a15;
+column loc format a15;
+
+column seatid format 999;
+column seatname format a10;
+column check_seat format a5;
+
+column bookid format 999;
+
+column drawid format 999;
+
+column reviewid format 999;
+column review_content format a30;
+
+
+<< 4. 테이블 인스턴스 >>
+  ① Category 테이블
+insert into category(cateid,catename) values(seq_category.nextval,'시사회');
+insert into category(cateid,catename) values(seq_category.nextval,'뮤지컬');
+insert into category(cateid,catename) values(seq_category.nextval,'연극');
+insert into category(cateid,catename) values(seq_category.nextval,'콘서트');
+
+
+  ② Customer 테이블
+
+
+  ③ Place 테이블
+
+
+  ④ Ticket 테이블
+
+
+  ⑤ Seat 테이블
+
+
+  ⑥ Book 테이블
+
+
+  ⑦ Draw 테이블
+
+
+  ⑧ Review 테이블
