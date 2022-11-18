@@ -28,7 +28,7 @@ public class CategoryDAO {
 	//카테고리 추가
 	public int insertCategory(CategoryVO c) {
 		int re = -1;
-		String sql = "";
+		String sql = "insert into category values(seq_category.val,?)";
 		Connection conn = null;
 		PreparedStatement pstmt = null;
 		try {
@@ -36,6 +36,7 @@ public class CategoryDAO {
 			DataSource ds = (DataSource)context.lookup("java:/comp/env/mydb");
 			conn = ds.getConnection();
 			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, c.getCatename());
 			
 			re = pstmt.executeUpdate();
 		} catch (Exception e) {
@@ -51,7 +52,7 @@ public class CategoryDAO {
 	//카테고리 수정
 	public int updateCategory(CategoryVO c) {
 		int re = -1;
-		String sql = "";
+		String sql = "update category set catename = ? where cateid = ?";
 		Connection conn = null;
 		PreparedStatement pstmt = null;
 		try {
@@ -59,6 +60,8 @@ public class CategoryDAO {
 			DataSource ds = (DataSource)context.lookup("java:/comp/env/mydb");
 			conn = ds.getConnection();
 			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1 , c.getCatename());
+			pstmt.setInt(2, c.getCateid());
 			
 			re = pstmt.executeUpdate();
 		} catch (Exception e) {
