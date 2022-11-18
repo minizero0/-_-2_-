@@ -218,57 +218,46 @@
        </div>
        
        <div><h2>--님, 환영합니다!</h2></div>
-    <form action="" method="post" id="form">
-		<!-- 예매 내역 ul - li 작성 -->
-		<div>
-			<input type="checkbox">
-			<div>포스터 이미지 삽입</div>
-			<h2>제목</h2>
-			<ul>
-				<li>예매번호: </li>
-				<li>관람일: </li>
-				<li>상영관: </li>
-				<li>관람인원: </li>
-				<li>관람좌석: </li>
-			</ul>
-			<button>후기작성</button>
-			<button>예매취소</button>
-		</div>
+       <!-- 후기 수정시 비활성화 상태에서 활성화 상태로 바꾸는거니까 ajax 활용 필요해보임! -->
+	    <form action="" method="post" id="form">
+				<div>
+					<span>별점</span>
+				</div>
+				<div>
+					<span>작성자</span>  <!-- 마이페이지에서 후기를 수정하는데 작성자가 필요한가? -->
+					&nbsp;&nbsp;<span>/</span>&nbsp;&nbsp;
+					<span>관람일</span>
+				</div>
+				<div>
+					<textarea type="text" id="" rows="3" cols="60" disabled="disabled">후기 내용</textarea>
+				</div>
+			<button id="">수정</button>		
+			<button id="">삭제</button>		
+		</form>
 		
-		<!-- 예매 내역 table 작성 -->
-		<div>
-			<input type="checkbox">
-			<div>포스터 이미지 삽입</div>
-			<table border="1"s>
-				<tr>
-					<td colspan="2">제목</td>
-				</tr>
-				<tr>
-					<td>예매번호</td>
-					<td>예매번호 입력창</td>
-				</tr>
-				<tr>
-					<td>관람일</td>
-					<td>관람일 입력창</td>
-				</tr>
-				<tr>
-					<td>상영관</td>
-					<td>상영관 입력창</td>
-				</tr>
-				<tr>
-					<td>관람인원</td>
-					<td>관람인원 입력창</td>
-				</tr>
-				<tr>
-					<td>관람좌석</td>
-					<td>관람좌석 입력창</td>
-				</tr>
-			</table>
-			<button>후기작성</button>
-			<button>예매취소</button>
-		</div>
-		
-	</form>
+		<!-- 활성화 된 경우 review_test.html에 있는 후기 입력창 내용으로 변경됨 ==> 복붙한 내용 -->
+		<form class="mb-3" name="myform" id="myform" method="post">
+			<fieldset>
+				<span class="text-bold">별점을 선택해주세요</span>
+				<input type="radio" name="reviewStar" value="5" id="rate1"><label
+					for="rate1">★</label>
+				<input type="radio" name="reviewStar" value="4" id="rate2"><label
+					for="rate2">★</label>
+				<input type="radio" name="reviewStar" value="3" id="rate3"><label
+					for="rate3">★</label>
+				<input type="radio" name="reviewStar" value="2" id="rate4"><label
+					for="rate4">★</label>
+				<input type="radio" name="reviewStar" value="1" id="rate5"><label
+					for="rate5">★</label>
+			</fieldset>
+			<div>
+				<textarea class="col-auto form-control" type="text" id="content"
+						  placeholder="내용을 입력해주세요"></textarea>
+			</div>
+		</form>			
+		<button id = "addBtn">등록</button>
+	
+	
   	  <div id="main-footer">
 		<footer>
 			<div>Footer</div>
