@@ -28,7 +28,7 @@ public class CategoryDAO {
 	//카테고리 추가
 	public int insertCategory(CategoryVO c) {
 		int re = -1;
-		String sql = "insert into category values(seq_category.val,?)";
+		String sql = "insert into category values(seq_category.nextval,?)";
 		Connection conn = null;
 		PreparedStatement pstmt = null;
 		try {

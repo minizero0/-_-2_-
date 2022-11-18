@@ -28,7 +28,7 @@ public class TicketDAO {
 	//티켓 추가
 	public int insertTicket(TicketVO t) {
 		int re = -1;
-		String sql = "insert into ticket values(seq_ticket.val,?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
+		String sql = "insert into ticket values(seq_ticket.nextval,?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
 		Connection conn = null;
 		PreparedStatement pstmt = null;
 		try {

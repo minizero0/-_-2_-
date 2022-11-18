@@ -28,7 +28,7 @@ public class SeatDAO {
 	//좌석 추가
 	public int insertSeat(SeatVO s) {
 		int re = -1;
-		String sql = "";
+		String sql = "insert into seat values(seq_seat.nextval,?,?,?,?)";
 		Connection conn = null;
 		PreparedStatement pstmt = null;
 		try {
@@ -36,6 +36,10 @@ public class SeatDAO {
 			DataSource ds = (DataSource)context.lookup("java:/comp/env/mydb");
 			conn = ds.getConnection();
 			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, s.getPlaceid());
+			pstmt.setInt(2, s.getTicketid());
+			pstmt.setString(3, s.getSeatname());
+			pstmt.setString(4, s.getCheck_seat());
 			
 			re = pstmt.executeUpdate();
 		} catch (Exception e) {
@@ -51,7 +55,7 @@ public class SeatDAO {
 	//좌석 정보 수정
 	public int updateSeat(SeatVO s) {
 		int re = -1;
-		String sql = "";
+		String sql = "update seat set placeid = ?, ticketid = ?, seatname = ?, check_seat = ? where seatid = ?";
 		Connection conn = null;
 		PreparedStatement pstmt = null;
 		try {
@@ -59,6 +63,11 @@ public class SeatDAO {
 			DataSource ds = (DataSource)context.lookup("java:/comp/env/mydb");
 			conn = ds.getConnection();
 			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, s.getPlaceid());
+			pstmt.setInt(2, s.getTicketid());
+			pstmt.setString(3, s.getSeatname());
+			pstmt.setString(4, s.getCheck_seat());
+			pstmt.setInt(5, s.getSeatid());
 			
 			re = pstmt.executeUpdate();
 		} catch (Exception e) {

@@ -11,6 +11,7 @@ import javax.naming.Context;
 import javax.naming.InitialContext;
 import javax.sql.DataSource;
 
+import com.sist.vo.BookVO;
 import com.sist.vo.DrawVO;
 
 public class DrawDAO {
@@ -156,4 +157,36 @@ public class DrawDAO {
 		}
 		return d;
 	}
+	
+	//사용자 드로우 내역 출력
+		public ArrayList<DrawVO> findByCustid(int custid) {
+			ArrayList<DrawVO> list = new ArrayList<>();
+			String sql = "select * from draw where custid=?";
+			Connection conn = null;
+			PreparedStatement pstmt = null;
+			ResultSet rs = null;
+			try {
+				Context context = new InitialContext();
+				DataSource ds = (DataSource)context.lookup("java:/comp/env/mydb");
+				conn = ds.getConnection();
+				pstmt = conn.prepareStatement(sql);
+				pstmt.setInt(1, custid);
+				rs = pstmt.executeQuery();
+				while(rs.next()) {
+					DrawVO b = new DrawVO();
+					b.setDrawid(rs.getInt("drawid"));
+					b.setCustid(rs.getString("custid"));
+					b.setTicketid(rs.getInt("ticketid"));
+					b.setSeatid(rs.getInt("seatid"));
+					list.add(b);
+				}
+			} catch (Exception e) {
+				System.out.println("예외발생:"+e.getMessage());
+			} finally {
+				if(rs != null) {try {rs.close();} catch (SQLException e) {e.printStackTrace();}}
+				if(pstmt != null) {try {pstmt.close();} catch (SQLException e) {e.printStackTrace();}}
+				if(conn != null) {try {conn.close();} catch (SQLException e) {e.printStackTrace();}}
+			}
+			return list;
+		}
 }
