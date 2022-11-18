@@ -19,6 +19,6 @@ public class TicketVO {
 	private String img_fname;
 	private String vid_url;
 	private String loc;
-	private String lat;
-	private String lng;
+	private double lat;
+	private double lng;
 }

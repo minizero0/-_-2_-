@@ -28,7 +28,7 @@ public class PlaceDAO {
 	//관 추가
 	public int insertPlace(PlaceVO p) {
 		int re = -1;
-		String sql = "insert into place values(?,?)";
+		String sql = "insert into place(placeid,seatnum) values(?,?)";
 		Connection conn = null;
 		PreparedStatement pstmt = null;
 		try {
@@ -38,7 +38,6 @@ public class PlaceDAO {
 			pstmt = conn.prepareStatement(sql);
 			pstmt.setString(1, p.getPlaceid());
 			pstmt.setInt(2, p.getSeatnum());
-			
 			re = pstmt.executeUpdate();
 		} catch (Exception e) {
 			System.out.println("예외발생:"+e.getMessage());
@@ -53,7 +52,7 @@ public class PlaceDAO {
 	//관 수정
 	public int updatePlace(PlaceVO p) {
 		int re = -1;
-		String sql = "update place set setnum = ? where placeid = ?";
+		String sql = "update place set seatnum=? where placeid=?";
 		Connection conn = null;
 		PreparedStatement pstmt = null;
 		try {
@@ -62,8 +61,7 @@ public class PlaceDAO {
 			conn = ds.getConnection();
 			pstmt = conn.prepareStatement(sql);
 			pstmt.setInt(1, p.getSeatnum());
-			pstmt.setString(2, p.getPlaceid());
-			
+			pstmt.setString(2, p.getPlaceid());			
 			re = pstmt.executeUpdate();
 		} catch (Exception e) {
 			System.out.println("예외발생:"+e.getMessage());

@@ -28,7 +28,7 @@ public class ReviewDAO {
 	//후기 추가
 	public int insertReview(ReviewVO r) {
 		int re = -1;
-		String sql = "";
+		String sql = "insert into review(reviewid,custid,ticketid,score,review_content) values(?,?,seq_ticket.nextval,?,?)";
 		Connection conn = null;
 		PreparedStatement pstmt = null;
 		try {
@@ -36,7 +36,10 @@ public class ReviewDAO {
 			DataSource ds = (DataSource)context.lookup("java:/comp/env/mydb");
 			conn = ds.getConnection();
 			pstmt = conn.prepareStatement(sql);
-			
+			pstmt.setInt(1, r.getReviewid());
+			pstmt.setString(2, r.getCustid());
+			pstmt.setDouble(3, r.getScore());
+			pstmt.setString(4, r.getReview_content());
 			re = pstmt.executeUpdate();
 		} catch (Exception e) {
 			System.out.println("예외발생:"+e.getMessage());
@@ -51,15 +54,19 @@ public class ReviewDAO {
 	//후기 수정
 	public int updateReview(ReviewVO r) {
 		int re = -1;
-		String sql = "";
+		String sql = "update review set custid=?,ticketid=?,score=?,review_content=? where reviewid=?";
 		Connection conn = null;
 		PreparedStatement pstmt = null;
 		try {
 			Context context = new InitialContext();
 			DataSource ds = (DataSource)context.lookup("java:/comp/env/mydb");
 			conn = ds.getConnection();
-			pstmt = conn.prepareStatement(sql);
-			
+			pstmt = conn.prepareStatement(sql);			
+			pstmt.setString(1, r.getCustid());
+			pstmt.setInt(2, r.getTicketid());
+			pstmt.setDouble(3, r.getScore());
+			pstmt.setString(4, r.getReview_content());
+			pstmt.setInt(5, r.getReviewid());
 			re = pstmt.executeUpdate();
 		} catch (Exception e) {
 			System.out.println("예외발생:"+e.getMessage());

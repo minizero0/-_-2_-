@@ -28,7 +28,7 @@ public class CategoryDAO {
 	//카테고리 추가
 	public int insertCategory(CategoryVO c) {
 		int re = -1;
-		String sql = "insert into category values(seq_category.nextval,?)";
+		String sql = "insert into category(cateid,catename) values(seq_category.nextval,?)";
 		Connection conn = null;
 		PreparedStatement pstmt = null;
 		try {
@@ -37,7 +37,6 @@ public class CategoryDAO {
 			conn = ds.getConnection();
 			pstmt = conn.prepareStatement(sql);
 			pstmt.setString(1, c.getCatename());
-			
 			re = pstmt.executeUpdate();
 		} catch (Exception e) {
 			System.out.println("예외발생:"+e.getMessage());
@@ -52,7 +51,7 @@ public class CategoryDAO {
 	//카테고리 수정
 	public int updateCategory(CategoryVO c) {
 		int re = -1;
-		String sql = "update category set catename = ? where cateid = ?";
+		String sql = "update category set catename=? where cateid=?";
 		Connection conn = null;
 		PreparedStatement pstmt = null;
 		try {
@@ -60,9 +59,8 @@ public class CategoryDAO {
 			DataSource ds = (DataSource)context.lookup("java:/comp/env/mydb");
 			conn = ds.getConnection();
 			pstmt = conn.prepareStatement(sql);
-			pstmt.setString(1 , c.getCatename());
+			pstmt.setString(1, c.getCatename());
 			pstmt.setInt(2, c.getCateid());
-			
 			re = pstmt.executeUpdate();
 		} catch (Exception e) {
 			System.out.println("예외발생:"+e.getMessage());

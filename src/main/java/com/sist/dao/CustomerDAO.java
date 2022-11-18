@@ -28,7 +28,7 @@ public class CustomerDAO {
 	//회원 가입
 	public int insertCustomer(CustomerVO c) {
 		int re = -1;
-		String sql = "";
+		String sql = "insert into customer(custid,pwd,name,birth,email,phone,gender,cateid) values(?,?,?,?,?,?,?,seq_category.nextval)";
 		Connection conn = null;
 		PreparedStatement pstmt = null;
 		try {
@@ -36,7 +36,13 @@ public class CustomerDAO {
 			DataSource ds = (DataSource)context.lookup("java:/comp/env/mydb");
 			conn = ds.getConnection();
 			pstmt = conn.prepareStatement(sql);
-			
+			pstmt.setString(1, c.getCustid());
+			pstmt.setString(2, c.getPwd());
+			pstmt.setString(3, c.getName());
+			pstmt.setString(4, c.getBirth());
+			pstmt.setString(5, c.getEmail());
+			pstmt.setString(6, c.getPhone());
+			pstmt.setString(7, c.getGender());
 			re = pstmt.executeUpdate();
 		} catch (Exception e) {
 			System.out.println("예외발생:"+e.getMessage());
@@ -51,7 +57,7 @@ public class CustomerDAO {
 	//회원 정보 수정
 	public int updateCustomer(CustomerVO c) {
 		int re = -1;
-		String sql = "";
+		String sql = "update customer set pwd=?,name=?,birth=?,email=?,phone=?,gender=?,cateid=? where custid=?";
 		Connection conn = null;
 		PreparedStatement pstmt = null;
 		try {
@@ -59,7 +65,14 @@ public class CustomerDAO {
 			DataSource ds = (DataSource)context.lookup("java:/comp/env/mydb");
 			conn = ds.getConnection();
 			pstmt = conn.prepareStatement(sql);
-			
+			pstmt.setString(1, c.getPwd());
+			pstmt.setString(2, c.getName());
+			pstmt.setString(3, c.getBirth());
+			pstmt.setString(4, c.getEmail());
+			pstmt.setString(5, c.getPhone());
+			pstmt.setString(6, c.getGender());
+			pstmt.setInt(7, c.getCateid());
+			pstmt.setString(8, c.getCustid());
 			re = pstmt.executeUpdate();
 		} catch (Exception e) {
 			System.out.println("예외발생:"+e.getMessage());
