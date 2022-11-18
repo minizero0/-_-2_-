@@ -1,0 +1,103 @@
+1. 2차 프로젝트 계정 생성 및 권한 부여
+  - create user c##project2 identified by project2;
+  - grant connect, resource, dba to c##project2;
+  ==>사용자명: c##project2 / 비밀번호: project2
+
+
+
+2. 테이블 생성
+  ① Category 테이블
+create table category(
+	cateid number primary key,
+	catename varchar2(20) not null
+);
+
+create sequence seq_category;
+
+
+  ② Customer 테이블
+create table customer(
+	custid varchar2(20) primary key,
+	pwd varchar2(20) not null,
+	name varchar2(20) not null,
+	birth date not null,
+	email varchar2(20) not null,
+	phone varchar2(20) not null unique,
+	gender varchar2(20) not null,
+	cateid number references category(cateid)
+);
+
+
+  ③ Place 테이블
+create table place(
+	placeid varchar2(10) primary key,
+	seatnum number not null
+);
+
+
+  ④ Ticket 테이블
+create table ticket(
+	ticketid number primary key,
+	cateid number references category(cateid),
+	placeid varchar2(10) references place(placeid),
+	ticket_name varchar2(20) not null,
+	price number not null,
+	ticket_date date not null,
+	min_age number not null,
+	runtime number not null,
+	cast varchar2(20),
+	content varchar2(300) not null,
+	img_fname varchar2(300) not null,
+	vid_url varchar2(300) null,
+	loc varchar2(100) not null,
+	lat varchar2(100) not null,
+	lng varchar2(100) not null	
+);
+
+create sequence seq_ticket;
+
+
+  ⑤ Seat 테이블
+create table seat(
+	seatid number primary key,
+	placeid varchar2(10) references place(placeid),
+	ticketid number references ticket(ticketid),
+	seatname varchar2(10) not null,
+	check_seat varchar2(10) default 'n'
+);
+
+create sequence seq_seat;
+
+
+  ⑥ Book 테이블
+create table book(
+	bookid number primary key,
+	custid varchar2(20) references customer(custid),
+	ticketid number references ticket(ticketid),
+	seatid number references seat(seatid)
+);
+
+create sequence seq_book;
+
+
+  ⑦ Draw 테이블
+create table draw(
+	drawid number primary key,
+	custid varchar2(20) references customer(custid),
+	ticketid number references ticket(ticketid),
+	seatid number references seat(seatid)
+);
+
+create sequence seq_draw;
+
+
+  ⑧ Review 테이블
+create table review(
+	reviewid number primary key,
+	custid varchar2(20) references customer(custid),
+	ticketid number references ticket(ticketid),
+	score number not null,
+	review_content varchar2(300) not null
+);
+
+create sequence seq_review;

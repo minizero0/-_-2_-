@@ -8,5 +8,5 @@ public class ReviewVO {
 	private String custid;
 	private int ticketid;
 	private int score;
-	private String reviewContent;
+	private String review_content;
 }

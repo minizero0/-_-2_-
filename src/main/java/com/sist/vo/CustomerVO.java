@@ -1,17 +1,15 @@
 package com.sist.vo;
 
-import java.sql.Date;
-
 import lombok.Data;
 
 @Data
 public class CustomerVO {
-	private String custid;
-	private int cateid;
+	private String custid;	
 	private String pwd;
 	private String name;
-	private Date birth;
+	private String birth;
+	private String email;
 	private String phone;
 	private String gender;
-	private String favor1;
+	private int cateid;
 }

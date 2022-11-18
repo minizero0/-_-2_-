@@ -1,7 +1,5 @@
 package com.sist.vo;
 
-import java.sql.Date;
-
 import lombok.Data;
 
 @Data
@@ -9,10 +7,16 @@ public class TicketVO {
 	private int ticketid;
 	private int cateid;
 	private String placeid;
-	private String ticketName;
+	private String ticket_name;
 	private int price;
-	private Date ticket_date;
+	private String ticket_date;
+	private int min_age;
+	private int runtime;
+	private String cast;
 	private String content;
-	private String img;
+	private String img_fname;
+	private String vid_url;
 	private String loc;
+	private String lat;
+	private String lng;
 }
