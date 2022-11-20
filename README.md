@@ -23,4 +23,4 @@
 
 2022/11/20 이명진
 - 잔여좌석수 리턴하는 메소드 작성 -> ticketDAO
-- 스코어 높은 순으로 ticketid 출력하는 메소드 작성 -> reviewDAO
+- 스코어 높은 순으로 ticketid,score 출력하는 메소드 작성 -> reviewDAO
