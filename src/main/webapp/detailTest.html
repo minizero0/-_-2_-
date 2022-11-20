@@ -83,11 +83,12 @@
 <!-- main-header 구성하기 -->
 <style type="text/css">
 	#navigation{
+		position: sticky;
 		top: 0;
 	}	
 	#navigation ul{
 		background-color : #08428C;
-		border-radius : 5px 5px 5px 5px;
+		border-radius : 5px 5px 0px 0px;
 		list-style-type: none;
 	    margin: 0;
 	    padding: 0;
@@ -132,46 +133,17 @@
 <!-- menu-bar -->
 <style type="text/css">
 	#menu-bar{
-		position : sticky;
-		top: 0;
+		width : 280px; height : 265px;
 		margin-top : 100px;
+		background-color : white;
+		border-radius : 10px 10px 10px 10px;
+		border : 2px solid #08428C;
 	}
-	#menu-bar li:not(#title){
+	#menu-bar li{
 		color : #08428C;
-		width : 200px; height : 25px;
-		padding : 15px;
-		cursor : pointer;
-		margin : -1.5px;
-		border : 2px solid grey;
-		border-radius : 10px 0px 0px 10px;
-	}
-	#menu-bar li:hover:not(#title){
-		font-weight : bolder;
-		color : #08428C;
-		background-color : #dcdcdc;
-		transition-duration: 0.5s;
-	}
-	#menu-bar li a:not(#title){
-		color : #08428C;
-	}
-	#title{
-		display : inline-block;
-		width : 199px; height : 70px;
-		padding : 15px;
-		font-size : 20px;
-		font-weight : bold;
-		text-align : center;
-		border : 1.5px solid #08428C;
-		border-radius : 10px 0px 0px 10px;
-		background-color : #08428C;
-		color : #F2AE30;
-		line-height: 70px;
-	}
-</style>
-<!-- 회원정보수정 -->
-<style type="text/css">
-	#form{
-		padding-left : 500px;
+
+		margin-right : 10px;
+		padding : 18px;
 	}
 </style>
 <!-- footer 구성하기 -->
@@ -208,59 +180,61 @@
              </ul>
         </nav>
         
-        <div>마이페이지 | 내 후기</div>
         
-       <div id="menu-bar">
-       		<ul>
-       			<li id="title">MyPage</li>
-       			<li><a href="#">내 정보</a></li>
-       			<li><a href="#">예매내역</a></li>
-       			<li><a href="#">드로우내역</a></li>
-       			<li><a href="#">내 후기</a></li>       		
-       		</ul>
-       </div>
-       
-       <div><h2>--님, 환영합니다!</h2></div>
-       <!-- 후기 수정시 비활성화 상태에서 활성화 상태로 바꾸는거니까 ajax 활용 필요해보임! -->
-	    <form action="" method="post" id="form">
-				<div>
-					<span>별점</span>
-				</div>
-				<div>
-					<span>작성자</span>  <!-- 마이페이지에서 후기를 수정하는데 작성자가 필요한가? -->
-					&nbsp;&nbsp;<span>/</span>&nbsp;&nbsp;
-					<span>관람일</span>
-				</div>
-				<div>
-					<textarea type="text" id="" rows="3" cols="60" disabled="disabled">후기 내용</textarea>
-				</div>
-			<button id="">수정</button>		
-			<button id="">삭제</button>		
-		</form>
-		
-		<!-- 활성화 된 경우 review_test.html에 있는 후기 입력창 내용으로 변경됨 ==> 복붙한 내용 -->
-		<form class="mb-3" name="myform" id="myform" method="post">
-			<fieldset>
-				<span class="text-bold">별점을 선택해주세요</span>
-				<input type="radio" name="reviewStar" value="5" id="rate1"><label
-					for="rate1">★</label>
-				<input type="radio" name="reviewStar" value="4" id="rate2"><label
-					for="rate2">★</label>
-				<input type="radio" name="reviewStar" value="3" id="rate3"><label
-					for="rate3">★</label>
-				<input type="radio" name="reviewStar" value="2" id="rate4"><label
-					for="rate4">★</label>
-				<input type="radio" name="reviewStar" value="1" id="rate5"><label
-					for="rate5">★</label>
-			</fieldset>
-			<div>
-				<textarea class="col-auto form-control" type="text" id="content"
-						  placeholder="내용을 입력해주세요"></textarea>
-			</div>
-		</form>			
-		<button id = "addBtn">등록</button>
-	
-	
+        <!-- 티켓 정보 -->
+        <div>
+        	<div>
+        		<img src="티켓 포스터">
+        	</div>
+        	<table>
+        		<tr>
+        			<td colspan="2">제목</td>
+        		</tr>
+        		<tr>
+        			<td>장소</td>
+        			<td></td>
+        		</tr>
+        		<tr>
+        			<td>캐스트</td>
+        			<td></td>
+        		</tr>        		
+        		<tr>
+        			<td>상영시간</td>
+        			<td></td>
+        		</tr>
+        		<tr>
+        			<td>개봉일</td>
+        			<td></td>
+        		</tr>
+        		
+        	</table>
+        </div>
+        
+        <!-- 예매하기 -->
+        <form action="">
+        	<!-- 날짜 선택창 (달력) -->
+        	
+        	<!-- 남은 좌석 -->
+        	
+        	<button>예매하기</button>
+        	<button>드로우</button>
+        </form>
+        
+        <!-- 티켓 정보 -->
+        
+        <!-- 후기 ==> 후기 위치로 이동 https://webisfree.com/2021-08-19/%ED%8A%B9%EC%A0%95-%EC%97%98%EB%A6%AC%EB%A8%BC%ED%8A%B8%EB%A1%9C-%EC%8A%A4%ED%81%AC%EB%A1%A4%EC%9D%84-%EC%B2%9C%EC%B2%9C%ED%9E%88-%EC%9D%B4%EB%8F%99%EC%8B%9C%ED%82%A4%EB%8A%94-%EB%B0%A9%EB%B2%95-scrollintoview-smooth -->
+        
+        <!-- 랭킹 -->
+        <!-- 성별 예매율 -->
+        <!-- 세대별 예매율 -->
+        
+        <div>
+        	<div>별점</div>
+        	<div>작성자 아이디	==> 일부만 가져오기? 앞에 세자리?만 가져오기?</div>
+        	<div>후기 내용</div>
+        </div>
+        
+
   	  <div id="main-footer">
 		<footer>
 			<div>Footer</div>
