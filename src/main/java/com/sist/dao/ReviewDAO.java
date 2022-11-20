@@ -173,7 +173,7 @@ public class ReviewDAO {
 	
 	//사용자 리뷰 내역 출력
 		public ArrayList<ReviewVO> findByCustid(int custid) {
-			ArrayList<ReviewVO> list = new ArrayList<>();
+			ArrayList<ReviewVO> list = new ArrayList<ReviewVO>();
 			String sql = "select * from review where custid=?";
 			Connection conn = null;
 			PreparedStatement pstmt = null;
@@ -203,4 +203,35 @@ public class ReviewDAO {
 			}
 			return list;
 		}
+		
+	//랭킹. 리뷰 스코어 높은순으로 정렬. 내가 선호하는 장르가 먼저 나오게. ticketid랑 score 담은 list 반환
+	public ArrayList<ReviewVO> lanking(int cateid) {
+		ArrayList<ReviewVO> list = new ArrayList<ReviewVO>();
+		String sql = "select t.ticketid,score from ticket t, review r where t.ticketid = r.ticketid and cateid = ? order by score desc";
+		Connection conn = null;
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		try {
+			Context context = new InitialContext();
+			DataSource ds = (DataSource)context.lookup("java:/comp/env/mydb");
+			conn = ds.getConnection();
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setInt(1, cateid);
+			rs = pstmt.executeQuery();
+			while(rs.next()) {
+				ReviewVO r = new ReviewVO();
+				r.setTicketid(rs.getInt("ticketid"));
+				r.setScore(rs.getInt("score"));
+				list.add(r);
+			}
+		} catch (Exception e) {
+			System.out.println("예외발생:"+e.getMessage());
+		} finally {
+			if(rs != null) {try {rs.close();} catch (SQLException e) {e.printStackTrace();}}
+			if(pstmt != null) {try {pstmt.close();} catch (SQLException e) {e.printStackTrace();}}
+			if(conn != null) {try {conn.close();} catch (SQLException e) {e.printStackTrace();}}
+		}
+		return list;
+	}
+	
 }

@@ -217,10 +217,8 @@ public class TicketDAO {
 	public String todayDate() {
 		 // 현재 날짜 구하기
         LocalDate now = LocalDate.now();
- 
         // 포맷 정의
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy/MM/dd");
- 
         // 포맷 적용
         String formatedNow = now.format(formatter);
         
@@ -231,16 +229,36 @@ public class TicketDAO {
 	public String nowTime() {
 		// 현재 시간
         LocalTime now = LocalTime.now();
- 
         // 현재시간 출력
         System.out.println(now);  // 06:20:57.008731300
- 
         // 포맷 정의하기
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("HH시 mm분 ss초");
- 
         // 포맷 적용하기
         String formatedNow = now.format(formatter);
         
 		return formatedNow;
+	}
+	
+	//잔여좌석수 반환하는 메소드
+	public int leftSeat(int ticketid) {
+		int num;
+		String sql = "select count(*) from seat where ticketid = ? and check_seat= 'n'";
+		Connection conn = null;
+		PreparedStatement pstmt = null;
+		try {
+			Context context = new InitialContext();
+			DataSource ds = (DataSource)context.lookup("java:/comp/env/mydb");
+			conn = ds.getConnection();
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setInt(1, ticketid);
+			num = pstmt.executeUpdate();
+		} catch (Exception e) {
+			System.out.println("예외발생:"+e.getMessage());
+		} finally {
+			if(pstmt != null) {try {pstmt.close();} catch (SQLException e) {e.printStackTrace();}}
+			if(conn != null) {try {conn.close();} catch (SQLException e) {e.printStackTrace();}}
+		}
+		
+		return num;
 	}
 }
