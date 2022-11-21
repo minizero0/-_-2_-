@@ -181,34 +181,53 @@
         </nav>
         
         
-        <!-- 티켓 정보 -->
-        <div>
-        	<div>
-        		<img src="티켓 포스터">
-        	</div>
-        	<table>
-        		<tr>
-        			<td colspan="2">제목</td>
-        		</tr>
-        		<tr>
-        			<td>장소</td>
-        			<td></td>
-        		</tr>
-        		<tr>
-        			<td>캐스트</td>
-        			<td></td>
-        		</tr>        		
-        		<tr>
-        			<td>상영시간</td>
-        			<td></td>
-        		</tr>
-        		<tr>
-        			<td>개봉일</td>
-        			<td></td>
-        		</tr>
-        		
-        	</table>
-        </div>
+        <!-- 상세 페이지 -->
+        <!-- 티켓 인스턴스 정보 ul - li 작성 -->
+		<div>
+			<div>포스터 이미지 삽입</div>
+			<h2>제목</h2>
+			<ul>
+				<li>관람일 </li>
+				<li>장소 </li>
+				<li>관람등급 </li>
+				<li>관람시간 </li>
+				<li>가격 </li>
+			</ul>
+		</div>
+		
+		
+		<!-- 티켓 인스턴스 정보 table 작성 -->
+		<div>
+			<div>포스터 이미지 삽입</div>
+			<table>
+				<tr>
+					<td colspan="2">제목</td>
+				</tr>
+				<tr>
+					<td>관람일</td>
+					<td>관람일 입력창</td>
+				</tr>
+				<tr>
+					<td>장소</td>
+					<td>장소 입력창</td>
+				</tr>
+				<tr>
+					<td>관람등급</td>
+					<td>관람등급 입력창</td>
+				</tr>
+				<tr>
+					<td>관람시간</td>
+					<td>관람시간 입력창</td>
+				</tr>
+				<tr>
+					<td>가격</td>
+					<td>가격 입력창</td>
+				</tr>
+			</table>
+			<button>결과확인</button>
+			<button>신청취소</button>
+		</div>
+        
         
         <!-- 예매하기 -->
         <form action="">
@@ -216,24 +235,46 @@
         	
         	<!-- 남은 좌석 -->
         	
-        	<button>예매하기</button>
+        	<button>서버시간 ==> 예매하기</button>
         	<button>드로우</button>
         </form>
         
-        <!-- 티켓 정보 -->
         
-        <!-- 후기 ==> 후기 위치로 이동 https://webisfree.com/2021-08-19/%ED%8A%B9%EC%A0%95-%EC%97%98%EB%A6%AC%EB%A8%BC%ED%8A%B8%EB%A1%9C-%EC%8A%A4%ED%81%AC%EB%A1%A4%EC%9D%84-%EC%B2%9C%EC%B2%9C%ED%9E%88-%EC%9D%B4%EB%8F%99%EC%8B%9C%ED%82%A4%EB%8A%94-%EB%B0%A9%EB%B2%95-scrollintoview-smooth -->
+        <!-- 탭 - 상세정보/후기 -->
+        <ul>
+        	<li>상세정보</li>
+        	<li>후기</li>
+        </ul>
         
-        <!-- 랭킹 -->
-        <!-- 성별 예매율 -->
-        <!-- 세대별 예매율 -->
         
+        <!-- 상세정보 -->
         <div>
-        	<div>별점</div>
-        	<div>작성자 아이디	==> 일부만 가져오기? 앞에 세자리?만 가져오기?</div>
-        	<div>후기 내용</div>
+        	<div>
+        		<iframe>비디오</iframe>
+        	</div>
+
+       		<ul>
+       			<li>캐스트</li>
+       			<li>캐스트 내용</li>
+       		</ul>
+       		
+       		<div>컨텐츠 내용</div>
+       		
+       		<div>오시는 길</div>
         </div>
         
+        <hr>
+        
+        <!-- 통계 -->
+        <div>남녀 예매율</div>
+        <div>세대별 예매율</div>
+        
+        <!-- 후기 ==> 후기 위치로 이동 https://webisfree.com/2021-08-19/%ED%8A%B9%EC%A0%95-%EC%97%98%EB%A6%AC%EB%A8%BC%ED%8A%B8%EB%A1%9C-%EC%8A%A4%ED%81%AC%EB%A1%A4%EC%9D%84-%EC%B2%9C%EC%B2%9C%ED%9E%88-%EC%9D%B4%EB%8F%99%EC%8B%9C%ED%82%A4%EB%8A%94-%EB%B0%A9%EB%B2%95-scrollintoview-smooth -->
+        <!-- 후기 정렬 ==>평점 높은순/평점 낮은순 -->
+        <select>
+        	<option>평점 높은순</option>
+        	<option>평점 낮은순</option>
+        </select>
 
   	  <div id="main-footer">
 		<footer>
